@@ -9,12 +9,15 @@ class AttendancesController < ApplicationController
 
   def new
     @attendance = Attendance.new
+    @par = params[:event_id]
+    @user = current_user.id
+    create
   end
 
   def create
-    @attendance = Attendance.new(attendance_params)
+    @attendance = current_user.attendances.build(attendance_params)
     if @attendance.save
-      redirect_to @attendance, notice: 'Attendance was successfully created.'
+      redirect_to root_path, notice: 'Sign Up to event was successful.'
     else
       render :new
     end
@@ -23,6 +26,6 @@ class AttendancesController < ApplicationController
   private
 
   def attendance_params
-    params.require(:attendance).permit(:date, :attendee_id, :attendance_type_id)
+    params.permit(:event_id)
   end
 end

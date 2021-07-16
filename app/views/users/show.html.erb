@@ -1,5 +1,16 @@
+<h1>Future dates</h1>
 <% @attendances.each do |attendance| %>
-  <tr>
-    <td><%= Event.find(attendance.event_id).name %></td><br/>
-  </tr>
+  <% if Event.find(attendance.event_id).date > Time.now.getutc %>
+    <tr>
+        <td><%= Event.find(attendance.event_id).name %></td><br/>
+    </tr>
+  <% end %>
+<% end %>
+<h1>Past dates</h1>
+<% @attendances.each do |attendance| %>
+  <% if Event.find(attendance.event_id).date < Time.now.getutc %>
+    <tr>
+        <td><%= Event.find(attendance.event_id).name %></td><br/>
+    </tr>
+  <% end %>
 <% end %>

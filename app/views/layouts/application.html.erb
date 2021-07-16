@@ -13,6 +13,37 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <div class="navbar-brand">
+      <%= link_to root_path do %>
+        <h1>Private Events</h1>
+      <% end %>
+    </div>
+
+    <div id="navbarExample" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="field is-grouped">
+          <p class="control">
+            <%= link_to 'Create Event', root_path%>
+          </p>
+          <% if user_signed_in? %>
+            <p class="control">
+              <%= link_to current_user.email, edit_user_registration_path%>
+            </p>
+            <p class="control">
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+            </p>
+          <% else %>
+            <p class="control">
+              <%= link_to 'Sign In', new_user_session_path %>
+            </p>
+            <p class="control">
+              <%= link_to 'Sign Up', new_user_registration_path %>
+            </p>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>

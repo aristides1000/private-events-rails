@@ -9,9 +9,11 @@ class AttendancesController < ApplicationController
 
   def new
     @attendance = Attendance.new
-    @par = params[:event_id]
-    @user = current_user.id
-    create
+    if previous_attendance
+      redirect_to root_path, notice: 'You are already listed to attend this event.'
+    else
+      create
+    end
   end
 
   def create
@@ -27,5 +29,14 @@ class AttendancesController < ApplicationController
 
   def attendance_params
     params.permit(:event_id)
+  end
+
+  def previous_attendance
+    @attendances = Attendance.where(attendance_params)
+    flag = false
+    @attendances.each do |i|
+      flag = true if current_user.id == i.user_id
+    end
+    flag
   end
 end

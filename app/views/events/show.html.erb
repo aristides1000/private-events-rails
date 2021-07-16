@@ -17,8 +17,7 @@
 <p>Attendees:</p>
 <% @attendees.each do |attendee| %>
   <tr>
-    <td><%= link_to User.find(attendee.user_id).email, @user %></td><br/>
-    <td><%= User.find(attendee.user_id).email %></td><br/>
+    <td><%= link_to User.find(attendee.user_id).email, controller: "users", action: "show", id: User.find(attendee.user_id).id %></td><br/>
   </tr>
 <% end %>
 

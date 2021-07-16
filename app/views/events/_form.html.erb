@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :date %>
-    <%= form.time_select :date %>
+    <%= form.datetime_select :date %>
   </div>
 
   <div class="field">
@@ -29,4 +29,6 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+
+  <%= Time.now.getutc %>
 <% end %>

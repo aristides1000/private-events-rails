@@ -1,0 +1,5 @@
+<% @attendances.each do |attendance| %>
+  <tr>
+    <td><%= Event.find(attendance.event_id).name %></td><br/>
+  </tr>
+<% end %>

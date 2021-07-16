@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
+    @attendees = attended_events = Attendance.where(event_id: set_event)
   end
 
   # GET /events/new

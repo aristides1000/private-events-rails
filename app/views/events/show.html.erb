@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @event.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @event.location %>
+</p>
+<p>Attendees:</p>
+<% @attendees.each do |attendee| %>
+  <tr>
+    <td><%= link_to User.find(attendee.user_id).email, controller: "users", action: "show", id: User.find(attendee.user_id).id %></td><br/>
+  </tr>
+<% end %>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
